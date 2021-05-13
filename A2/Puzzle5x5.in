@@ -1,0 +1,40 @@
+%Puzzle 5x5 regular custom
+
+assign(domain_size, 25).
+assign(max_models, -1).
+set(arithmetic).
+
+list(distinct).
+ [
+	a0, a1, a2, a3, a4,
+	a5, a6, a7, a8, a9,
+	a10, a11, a12, a13, a14,
+	a15, a16, a17, a18, a19,
+	a20, a21, a22, a23, a24
+ ].
+end_of_list.
+
+formulas(assumptions).
+	(x != 20 & x != 21 & x != 22 & x != 23 & x != 24) -> (on(x,y) <-> y = x + 5).
+   -(x != 20 & x != 21 & x != 22 & x != 23 & x != 24) -> -on(x,y).
+
+	(x != 4 & x != 9 & x != 14 & x != 19 & x != 24) -> (left(x,y) <-> y = x + 1).
+   -(x != 4 & x != 9 & x != 14 & x != 19 & x != 24) -> -left(x,y).
+
+	left(a0, a1) & on(a0, a5) & left(a5, a6) & on(a1, a6). 						  %green
+	on(a2, a7) & on(a7, a12) & left(a11, a12). 									  %red
+	on(a3, a8) & on(a8, a13).													  %purple
+	on(a4, a9) & on(a9, a14) & on(a14, a19). 									  %orange
+	on(a10, a15) & on(a15, a20) & left(a15, a16) & left(a20, a21) & on(a16, a21). %dark blue
+	left(a17, a18) & on(a18, a23) & left(a23, a24). 							  %light blue
+end_of_list.
+
+formulas(pretty_print).
+	c(a0) = 0. c(a1) = 0. c(a5) = 0. c(a6) = 0. 			   %green
+	c(a2) = 1. c(a7) = 1. c(a7) = 1. c(a11) = 1. c(a12) = 1.   %red
+	c(a3) = 2. c(a8) = 2. c(a13) = 2. 						   %purple
+	c(a4) = 3. c(a9) = 3. c(a14) = 3. c(a19) = 3. 			   %orange
+	c(a10) = 4. c(a15) = 4. c(a16) = 4. c(a20) = 4. c(21) = 4. %dark blue
+	c(a17) = 5. c(a18) = 5. c(a23) = 5. c(a24) = 5. 		   %light blue
+	c(a22) = 6. 											   %last box - grey
+end_of_list.

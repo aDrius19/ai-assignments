@@ -1,0 +1,33 @@
+%Puzzle 4x4 iregular custom
+
+assign(domain_size, 16).
+assign(max_models, -1).
+set(arithmetic).
+
+list(distinct).
+ [
+	a0, a1, a2, a3,
+	a4, a5, a6, a7,
+	a8, a9, a10, a11,
+	a12, a13, a14, a15
+ ].
+end_of_list.
+
+formulas(assumptions).
+	(x != 12 & x != 13 & x != 14 & x != 15) -> (on(x,y) <-> y = x + 4).
+   -(x != 12 & x != 13 & x != 14 & x != 15) -> -on(x,y).
+
+	(x != 3 & x != 7 & x != 11 & x != 15) -> (left(x,y) <-> y = x + 1).
+   -(x != 3 & x != 7 & x != 11 & x != 15) -> -left(x,y).
+
+	left(a0, a1) & left(a1, a2) & left(a2, a3). 			%red
+	left(a5, a6) & left(a6, a7) & on(a5, a9) & on(a9, a13). %purple
+	left(a10, a11). 										%green
+end_of_list.
+
+formulas(pretty_print).
+	c(a0) = 0. c(a1) = 0. c(a2) = 0. c(a3) = 0. 			  %red
+	c(a5) = 1. c(a6) = 1. c(a7) = 1. c(a9) = 1. c(a13) = 1.   %purple
+	c(a10) = 2. c(a11) = 2. 								  %green
+	c(a4) = 8. c(a8) = 8. c(a12) = 8. c(a14) = 8. c(a15) = 8. %empty
+end_of_list.

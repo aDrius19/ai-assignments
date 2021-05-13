@@ -1,0 +1,30 @@
+%Puzzle 3x3 custom
+
+assign(domain_size, 9).
+assign(max_models, -1).
+set(arithmetic).
+
+list(distinct).
+ [
+	a0, a1, a2, 
+	a3, a4, a5, 
+	a6, a7, a8
+ ].
+end_of_list.
+
+formulas(assumptions).
+	(x != 6 & x != 7 & x != 8) -> (on(x,y) <-> y = x + 3).
+   -(x != 6 & x != 7 & x != 8) -> -on(x,y).
+
+	(x != 2 & x != 5 & x != 8) -> (left(x,y) <-> y = x + 1).
+   -(x != 2 & x != 5 & x != 8) -> -left(x,y).
+
+	left(a1, a2) & on(a2, a5) & on(a5, a8). %purple
+	on(a0, a3) & left(a3, a4) & on(a4, a7). %brown
+end_of_list.
+
+formulas(pretty_print).
+	c(a0) = 0. c(a3) = 0. c(a4) = 0. c(a7) = 0. %purple
+	c(a1) = 1. c(a2) = 1. c(a5) = 1. c(a8) = 1. %brown
+	c(a6) = 2.						 		 	%only one green box
+end_of_list.

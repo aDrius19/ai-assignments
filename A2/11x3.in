@@ -1,0 +1,49 @@
+assign(domain_size, 33).
+assign(max_models, -1).
+set(arithmetic).
+
+list(distinct).
+	[
+	 a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10,
+	 a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21,
+	 a22, a23, a24, a25, a26, a27, a28, a29, a30, a31, a32 
+	].
+end_of_list.
+
+formulas(assumptions).
+	(x != 32 & x != 31 & x != 22 & x != 23 & x != 24 & x != 25 & x != 26 & x != 27 & x != 28 & x != 29 & x != 30 & x != 0 & x != 10 & x != 19) -> (on(x,y) <-> y = x + 11).
+	-(x != 32 & x != 31 & x != 22 & x != 23 & x != 24 & x != 25 & x != 26 & x != 27 & x != 28 & x != 29 & x != 30 & x != 0 & x != 10 & x != 19) -> -on(x,y).
+
+	(x != 10 & x != 21 & x != 32 & x != 0 & x != 22 & x != 19) -> (left(x,y) <-> y = x + 1).
+	-(x != 10 & x != 21 & x != 32 & x != 0 & x != 22 & x != 19) -> -left(x,y).
+
+	on(a1, a12) & left(a11, a12) & on(a12, a23). %purple
+	on(a2, a13) & on(a13, a24) & left(a24, a25). %lime
+	left(a3, a4) & on(a3, a14). %orange
+	on(a15, a26) & left(a15, a16) & on(a16, a27) & left(a26, a27). %blueberry yoghurt
+	left(a5, a6) & on(a6, a17) & left(a17, a18). %brown
+	left(a28, a29) & left(a29, a30) & left(a30, a31). %pink
+	left(a7, a8) & left(a8, a9). %green
+	left(a20, a21). %red
+end_of_list.
+
+formulas(pretty_print).
+	c(a1) = 0. c(a12) = 0. c(a11) = 0. c(a23) = 0. %purple
+	c(a2) = 1. c(a13) = 1. c(a24) = 1. c(a25) = 1. %lime
+	c(a3) = 2. c(a4) = 2. c(a14) = 2. %orange
+	c(a15) = 3. c(a16) = 3. c(a26) = 3. c(a27) = 3. %blueberry yoghurt
+	c(a5) = 4. c(a6) = 4. c(a17) = 4. c(a18) = 4. %brown
+	c(a28) = 5. c(a29) = 5. c(a30) = 5. c(a31) = 5. %pink
+	c(a7) = 6. c(a8) = 6. c(a9) = 6. %green
+	c(a20) = 7. c(a21) = 7. %red
+	c(a19) = 8. %blue
+	c(a0) = 32. c(a10) = 32. c(a22) = 32. c(a32) = 32. %empty
+end_of_list.
+
+% P = purple, L = lime, O = orange, Y = blueberry yoghurt, 
+% B = brown, p = pink, G = green, B = blue, R = red
+%%%%%%%%%%%%%%%%%%%%
+%  PLOOBBGGG
+% PPLOYYBBBRR
+%  PLLYYpppp
+%%%%%%%%%%%%%%%%%%%%
